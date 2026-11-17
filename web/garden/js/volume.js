@@ -133,7 +133,8 @@ export class VoxelVolume {
       const px = a[0] + dx * t, py = a[1] + dy * t, pz = a[2] + dz * t;
       if (r <= 0.75) {
         if (opts.onlyEmpty && this.get(px, py, pz) !== 0) continue;
-        this.set(Math.floor(px), Math.floor(py), Math.floor(pz), VoxelVolume.paint(p, Math.floor(px), Math.floor(py), Math.floor(pz)));
+        const m = VoxelVolume.paint(p, Math.floor(px), Math.floor(py), Math.floor(pz));
+        if (m >= 0) this.set(Math.floor(px), Math.floor(py), Math.floor(pz), m);
       } else {
         this.ellipsoid(px, py, pz, r, r, r, p, opts);
       }
