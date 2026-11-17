@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#232e2d" />
+    <meta
+      name="description"
+      content="黄昏庭：由细小体素构筑的日式庭院，探索木屋、锦鲤池与樱花。"
+    />
+    <title>黄昏庭 · A quiet place between moments</title>
+    <link rel="icon" href="../icons/icon-192.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas
+      id="garden"
+      tabindex="0"
+      aria-label="可交互三维体素庭院，拖拽旋转，滚轮缩放，方向键平移，R 复位"
+    ></canvas>
+    <header class="ui">
+      <a class="wordmark" href="./" aria-label="重新查看庭院"
+        >OPUS <span>WORLDS / 001</span></a
+      >
+      <div class="edition">手作风景集 <b>風景</b></div>
+    </header>
+    <main class="ui title">
+      <p class="eyebrow"><span></span> THE GARDEN AT DUSK</p>
+      <h1>黄昏庭<span>Yūgure</span></h1>
+      <p class="poem">
+        留一盏灯，等风经过。<br /><span>A quiet place between moments.</span>
+      </p>
+      <div class="rule"></div>
+      <p class="caption">
+        小小体素 · 一方天地<br /><span>240 × 176 · VOXEL DIORAMA</span>
+      </p>
+    </main>
+    <div id="loading" role="status">
+      <div class="seal">庭</div>
+      <p id="progress">正在铺开一方庭院…</p>
+      <small>每一片屋瓦、花叶，都是细小的体素。</small>
+    </div>
+    <div id="error" role="alert" hidden>
+      <h2>庭院暂未展开</h2>
+      <p></p>
+      <button onclick="location.reload()">重新加载</button>
+    </div>
+    <aside class="ui scene-note">
+      <span>01 / 黄昏</span>
+      <p>木桥听水 · 纸窗留光</p>
+      <small>Procedurally built. Slowly enjoyed.</small>
+    </aside>
+    <footer class="ui">
+      <div class="hint">
+        <span class="dot"></span><span id="state">日落时分 / GOLDEN HOUR</span>
+      </div>
+      <nav aria-label="庭院控制">
+        <button id="reset" title="复位视角 (R)">↺ <span>归位</span></button>
+        <button id="orbit" aria-pressed="false" title="自动环绕 (空格)">
+          ◎ <span>漫游</span>
+        </button>
+        <button id="pause" aria-pressed="false" title="暂停水纹与锦鲤">
+          Ⅱ <span>静止</span>
+        </button>
+        <button id="capture" title="保存当前画面 (P)">
+          ▣ <span>留影</span>
+        </button>
+        <button
+          id="help"
+          aria-expanded="false"
+          aria-controls="instructions"
+          title="操作说明"
+        >
+          ? <span>操作</span>
+        </button>
+        <label class="quality"
+          ><span>画质</span
+          ><select id="quality" aria-label="渲染画质">
+            <option value="1">流畅</option>
+            <option value="1.5" selected>均衡</option>
+            <option value="2">精细</option>
+          </select></label
+        >
+      </nav>
+    </footer>
+    <section id="instructions" class="ui" hidden>
+      <h2>在庭院里走走</h2>
+      <p>
+        拖拽旋转 · 滚轮缩放<br />右键 / Shift + 拖拽平移<br />双指捏合缩放，双指拖动平移
+      </p>
+      <p>
+        WASD / 方向键 平移 · Q / E 旋转<br />R 归位 · 空格 漫游 · P 留影<br />H
+        隐藏 / 显示界面
+      </p>
+      <small>画面由实时三维体素构建，不是背景图片。</small>
+    </section>
+    <button id="show-ui" hidden>显示界面 (H)</button>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
