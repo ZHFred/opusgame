@@ -62,6 +62,28 @@ python -m http.server 8080
 
 请不要直接双击 `index.html`：以 `file://` 打开时，浏览器会因 CORS 拦截音频。也可以把 `web/` 部署到 Cloudflare Pages、Vercel、Netlify 或 GitHub Pages 等静态托管（需要 HTTPS）。更多说明见 [`web/README.txt`](web/README.txt)。
 
+## 黄昏庭 · 细体素庭院
+
+新增独立的实时三维微缩景观，不替换原音游。启动上面的静态服务后打开 **<http://127.0.0.1:8080/garden/>**。
+
+![黄昏庭实机画面](docs/garden-preview.jpg)
+
+木屋、层叠瓦顶、紫藤、纸鹤、茶桌橘猫、樱枫竹林、鸟居、拱桥锦鲤池与竹筒水钵均由小体素程序化构建；原生 WebGL2 渲染，无运行时第三方依赖。拖拽旋转、滚轮缩放、右键/双指平移，`R` 复位、空格漫游、`P` 保存画面、`H` 隐藏界面。移动端支持触控；系统开启“减少动态效果”时默认暂停场景动画。
+
+开发验证（Node.js 22+，Python 3）：
+
+```bash
+npm ci
+npm test
+npm run typecheck
+npm run build        # 将完整 web/ 复制为可部署的 dist/
+npm run serve        # http://127.0.0.1:8080/garden/
+# 另一个终端；需安装 Chrome（或用 CHROME_PATH 指定 Chromium）
+npm run test:browser # 真实 WebGL2 / 交互 / 回退检查及 artifacts/ 下的桌面、移动端截图
+```
+
+架构、分阶段方案、恢复过程与审查记录见 [docs/voxel-garden.md](docs/voxel-garden.md)。庭院需通过 HTTP(S) 访问，不能直接以 `file://` 打开；Electron 离线单文件打包不包含这个独立页面。已有 OPUS PWA 的 cache-first 缓存策略未改变，更新部署后若仍见旧版，可在浏览器开发工具清理该站点缓存后重新载入。
+
 ## 仓库结构
 
 ```
