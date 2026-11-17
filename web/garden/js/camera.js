@@ -120,6 +120,7 @@ export function attachControls(el, cam, hooks = {}) {
   };
   el.addEventListener("pointerup", end);
   el.addEventListener("pointercancel", end);
+  el.addEventListener("lostpointercapture", end);
   el.addEventListener("pointermove", (e) => {
     const p = pointers.get(e.pointerId);
     if (!p) return;
@@ -151,6 +152,8 @@ export function attachControls(el, cam, hooks = {}) {
     if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
     const k = e.key.toLowerCase();
     held.add(k);
+    if (k.startsWith("arrow")) e.preventDefault();
+    if (e.repeat) return;
     if (hooks.onKey) hooks.onKey(k);
     if (k === "r") cam.reset();
     if (k === " ") { cam.autoOrbit = !cam.autoOrbit; e.preventDefault(); }

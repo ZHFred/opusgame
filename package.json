@@ -7,7 +7,9 @@
     "test": "node --test tests/*.test.js",
     "typecheck": "tsc -p tsconfig.json",
     "serve": "python3 -m http.server 8080 --directory web",
-    "shot": "node tools/garden-shot.mjs"
+    "shot": "node tools/garden-shot.mjs",
+    "build": "node tools/build.mjs",
+    "test:browser": "node tools/garden-shot.mjs && node tools/garden-resilience.mjs"
   },
   "devDependencies": {
     "puppeteer-core": "^25.0.0",
